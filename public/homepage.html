@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            
+        }
+        .background {
+            width: 100%;
+            height: 100vh;
+            background-image: url('./assents/gold\ \(11\).png');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .banner {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: red;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-bottom: 500px; /* Reducido el margen inferior */
+            width: 90%;
+        }
+        .menuItem {
+            background-color: red;
+            padding: 10px;
+            border-radius: 15px;
+        }
+        .menuImage {
+            width: 35px; /* Ancho deseado */
+            height: auto; /* Altura ajustada automáticamente */
+        }
+        .menuText {
+            font-size: 24px;
+        }
+        .bottomButtons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 50px;
+            width: 90%; /* Reducido el ancho */
+        }
+        .bottomButton {
+            background-color: transparent;
+            padding: 15px 30px; /* Aumentado el espaciado horizontal */
+            border-radius: 30px;
+            width: auto; /* Ancho automático */
+            align-items: center;
+            border: 1px solid white;
+        }
+        .bottomButtonText {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .modalContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modalContent {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            text-align: center;
+        }
+        .modalTitle {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .modalText {
+            margin-bottom: 10px;
+        }
+        .input {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="container">
+            <div class="banner">
+                <div class="menuItem" onclick="handleContactUs()">
+                    <img src="./assents/icons8-whatsapp-36(-ldpi).png" alt="WhatsApp Icon" class="icon">
+                </div>
+                <div class="menuItem" onclick="window.location.href = './game.html'">
+                    <span class="menuText">🎲</span> <!-- Ahora este lleva a game.html -->
+                </div>
+                <div class="menuItem" onclick="window.location.href = 'https://www.facebook.com/share/wx1NZB12UP3gEqeL/?mibextid=qi2Omg'">
+                    <img src="./assents/facebook.png" alt="Facebook Logo" class="menuImage"> <!-- Cambiado a imagen -->
+                </div>
+                <!-- <div class="menuItem" onclick="onGoToSplashScreen()">
+                    <span class="menuText">🚪</span>
+                </div> -->
+                <div class="menuItem" onclick="window.location.href = './index.html'">
+                    <span class="menuText">🚪</span> <!-- Ahora este lleva a game.html -->
+                </div>
+            </div>
+            <div class="bottomButtons">
+                <div class="bottomButton" onclick="window.location.href = './game.html'">
+                    <span class="bottomButtonText">Mesa Multijugador</span>
+                </div>
+                <div class="bottomButton" onclick="window.location.href = './juegoen famili.html'">
+                    <span class="bottomButtonText">Juego En Familia</span>
+                </div>
+                
+            </div>
+            <div class="modalContainer" id="modalContainer" style="display: none;">
+                <div class="modalContent">
+                    <div class="modalTitle">Ingrese el PIN</div>
+                    <div class="modalText">Comunícate con tu administrador para obtener el PIN.</div>
+                    <input type="text" class="input" id="pinInput" placeholder="PIN">
+                    <button onclick="handleCheckPin()">Ingresar</button>
+                    <button onclick="closeModal()" style="color: red;">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleContactUs() {
+            const phoneNumber = '3016497697'; // Aquí debes ingresar tu número de WhatsApp
+            window.open(`https://api.whatsapp.com/send?phone=${phoneNumber}`, '_blank');
+        }
+
+        function openModal() {
+            document.getElementById('modalContainer').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modalContainer').style.display = 'none';
+        }
+
+        function handleCheckPin() {
+            const pin = document.getElementById('pinInput').value;
+            if (pin === '25008') {
+                closeModal();
+                localStorage.setItem('pin', pin); // Guarda el PIN en el almacenamiento local del navegador
+                window.location.href = 'URL_DE_LA_PANTALLA_DE_LA_MESA'; // Redirige a la pantalla de la mesa
+            } else {
+                console.log('Pin incorrecto');
+            }
+        }
+    </script>
+</body>
+</html>
